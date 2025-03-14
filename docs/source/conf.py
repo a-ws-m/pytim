@@ -12,13 +12,17 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
+import os
+import sys
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
 import sphinx.ext.autodoc
-import os
-import sys
+
+import pytim
+
 #import sphinx_rtd_theme
 
 needs_sphinx = '1.4.3'
@@ -27,9 +31,7 @@ dist_threads = 4
 sys.path.insert(0, os.path.abspath('.'))
 sys.path.insert(0, os.path.abspath('../'))
 sys.path.insert(0, os.path.abspath('./pytim'))
-version = {}
-with open("../../pytim/version.py") as fp:
-    exec(fp.read(), version)
+version = pytim.__version__
 
 # -- General configuration ------------------------------------------------
 

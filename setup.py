@@ -10,18 +10,19 @@ import sys
 
 # Always prefer setuptools over distutils
 try:
-    from setuptools import find_packages
-    from Cython.Distutils import build_ext
     import numpy
+    from Cython.Distutils import build_ext
+    from setuptools import find_packages
 except ImportError as mod_error:
     mod_name = mod_error.message.split()[3]
     sys.stderr.write("Error : " + mod_name + " is not installed\n"
                      "Use pip install " + mod_name + "\n")
     exit(100)
 
+from distutils.extension import Extension
+
 from setuptools import setup
 from setuptools.command.test import test as TestCommand
-from distutils.extension import Extension
 
 
 class NoseTestCommand(TestCommand):
@@ -60,6 +61,9 @@ if sys.platform == 'darwin' and os.path.exists('/usr/bin/xcodebuild'):
 version = {}
 with open("pytim/version.py") as fp:
     exec(fp.read(), version)
+
+with open("requirements.txt", "r") as f:
+    install_requires = f.read().splitlines()
 
 setup(
     name='pytim',
@@ -125,7 +129,7 @@ setup(
     # requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
     install_requires=[
-        'numpy>=1.26.4,<2.0.0', 'cython>=0.24.1','gsd>=3.0.0','MDAnalysis>=2.7.0'
+        'numpy>=1.26.4', 'cython>=0.24.1','gsd>=3.0.0','MDAnalysis>=2.7.0'
     ],
 
     # List additional groups of dependencies here (e.g. development

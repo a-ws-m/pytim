@@ -4,11 +4,13 @@
     ===============
 """
 from __future__ import print_function
+
+import numpy as np
+from MDAnalysis.core.groups import Atom, AtomGroup, Residue, ResidueGroup
+from scipy import stats
+
 from .basic_observables import Number
 from .intrinsic_distance import IntrinsicDistance
-import numpy as np
-from scipy import stats
-from MDAnalysis.core.groups import Atom, AtomGroup, Residue, ResidueGroup
 
 
 class Profile(object):
@@ -316,7 +318,7 @@ class Profile(object):
         >>> stdprof = pytim.observables.Profile()
         >>> stdprof.sample(u.atoms)
         >>> print(stdprof.get_values(binwidth=0.5)[2][:6])
-        [0.09229169 0.10959639 0.08075523 0.10959639 0.09805993 0.09805993]
+        [0.0922917  0.10959639 0.08075523 0.10959639 0.09805993 0.09805993]
 
         >>> prof = pytim.observables.Profile(interface=inter)
         >>> prof.sample(u.atoms)
@@ -354,7 +356,7 @@ class Profile(object):
         >>> stdprof = pytim.observables.Profile()
         >>> stdprof.sample(u.atoms)
         >>> print(stdprof.get_values(binwidth=0.5)[2][:6])
-        [0.09229169 0.10959639 0.08075523 0.10959639 0.09805993 0.09805993]
+        [0.0922917  0.10959639 0.08075523 0.10959639 0.09805993 0.09805993]
 
         >>> prof = pytim.observables.Profile(interface=inter)
         >>> prof.sample(u.atoms)

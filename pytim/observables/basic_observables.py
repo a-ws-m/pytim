@@ -4,10 +4,11 @@
     =========================
 """
 from __future__ import print_function
+
 import numpy as np
-from scipy import stats
 from MDAnalysis.core.groups import Atom, AtomGroup, Residue, ResidueGroup
 from MDAnalysis.lib import distances
+from scipy import stats
 
 from .observable import Observable
 
@@ -159,12 +160,12 @@ class Distance(Observable):
         >>> u = mda.Universe(pytim.datafiles.WATER_GRO)
         >>> d1 = pytim.observables.Distance().compute(u.atoms[:9],u.atoms[:9])
         >>> d2 = pytim.observables.RelativePosition(spherical=True).compute(u.atoms[:9],u.atoms[:9])[:,0]
-        >>> np.all(np.isclose(d1,d2))
+        >>> bool(np.all(np.isclose(d1,d2)))
         True
 
         >>> d1 = pytim.observables.Distance('xy').compute(u.atoms[:9],u.atoms[:9])
         >>> d2 = pytim.observables.RelativePosition('xy',spherical=True).compute(u.atoms[:9],u.atoms[:9])[:,0]
-        >>> np.all(np.isclose(d1,d2))
+        >>> bool(np.all(np.isclose(d1,d2)))
         True
 
     """

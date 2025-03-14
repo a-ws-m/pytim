@@ -1,0 +1,18 @@
+{
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": false,
+        "editor.codeActionsOnSave": {}
+    },
+    "isort.args": [
+        "--profile",
+        "black"
+    ],
+    "python.testing.pytestArgs": [
+        "--doctest-modules",
+        "--doctest-report",
+        "ndiff",
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
+}

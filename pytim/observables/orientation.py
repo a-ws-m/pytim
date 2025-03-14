@@ -5,9 +5,11 @@
 """
 
 from __future__ import print_function
-from . import Observable
+
 import numpy as np
 from MDAnalysis.core.groups import Atom, AtomGroup
+
+from . import Observable
 
 
 class Orientation(Observable):
@@ -109,7 +111,7 @@ class BivariateAngles(Observable):
         >>> condition = np.logical_and(u.atoms.sides==0,u.atoms.layers==1)
         >>> group = u.atoms[condition]
         >>> costheta, phi = biv.compute(group)
-        >>> np.all(np.isclose([costheta[0],phi[0]], [0.6533759236335754, 0.10778185716460659]))
+        >>> bool(np.all(np.isclose([costheta[0],phi[0]], [0.6533759236335754, 0.10778185716460659])))
         True
     """
 

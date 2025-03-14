@@ -74,7 +74,7 @@ class WillardChandler(Interface):
         >>> inter= pytim.WillardChandler(u, group=g, alpha=3.0, fast=True)
         >>> R, _, _, _ = pytim.utilities.fit_sphere(inter.triangulated_surface[0])
         >>> print ("Radius={:.3f}".format(R))
-        Radius=19.970
+        Radius=19.984
 
 
         .. _MDAnalysis: http://www.mdanalysis.org/

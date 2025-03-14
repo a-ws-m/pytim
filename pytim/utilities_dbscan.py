@@ -1,12 +1,15 @@
 # -*- Mode: python; tab-width: 4; indent-tabs-mode:nil; coding: utf-8 -*-
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4
 from __future__ import print_function
+
 import numpy as np
 import scipy
+from packaging import version
 from scipy.cluster import vq
 from scipy.spatial import cKDTree
+
 from pytim_dbscan import dbscan_inner
-from packaging import version
+
 
 def determine_samples(threshold_density, cluster_cut, n_neighbors):
 
@@ -104,7 +107,7 @@ def _():
     >>> print (np.sort(c2)[-2:])
     [   0 9335]
 
-    >>> print ((np.all(c1==c2), np.all(l1==l2)))
+    >>> print ((bool(np.all(c1==c2)), bool(np.all(l1==l2))))
     (True, True)
 
     """

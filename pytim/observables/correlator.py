@@ -6,8 +6,9 @@
 from __future__ import print_function
 
 import numpy as np
-from pytim import utilities
 from MDAnalysis.core.groups import Atom, AtomGroup, Residue, ResidueGroup
+
+from pytim import utilities
 
 
 class Correlator(object):
@@ -210,10 +211,10 @@ class Correlator(object):
 
             The timeseries sampled can be accessed using:
 
-            >>> print(vv.timeseries) # rows refer to time, columns to particle
+            >>> np.array(vv.timeseries).tolist() # rows refer to time, columns to particle
             [[1.0, 1.0], [1.0, 1.0], [1.0, 0.0], [0.5, 0.5]]
             >>>
-            >>> print(nn.timeseries)
+            >>> np.array(nn.timeseries).tolist()
             [[True, True], [True, True], [True, False], [True, True]]
             >>>
 
@@ -227,11 +228,11 @@ class Correlator(object):
 
             >>> # normalized, continuous
             >>> corr = nn.correlation()
-            >>> print (np.allclose(corr, [ 7./7, 4./5, 2./4, 1./2]))
+            >>> bool(np.allclose(corr, [ 7./7, 4./5, 2./4, 1./2]))
             True
             >>> # normalized, intermittent
             >>> corr = nn.correlation(continuous=False)
-            >>> print (np.allclose(corr, [ 7./7, 4./5, 3./4, 2./2 ]))
+            >>> bool(np.allclose(corr, [ 7./7, 4./5, 3./4, 2./2 ]))
             True
 
             The autocorrelation functions are calculated by taking
@@ -246,19 +247,19 @@ class Correlator(object):
             >>> corr = vv.correlation(normalized=False,continuous=False)
             >>> c0 = (1+1+1+0.25+1+1+0.25)/7
             >>> c1 = (1+1+0.5+1)/5 ; c2 = (1+0.5+0.5)/4 ; c3 = (0.5+0.5)/2
-            >>> print (np.allclose(corr, [ c0, c1, c2, c3]))
+            >>> bool(np.allclose(corr, [ c0, c1, c2, c3]))
             True
             >>> # check normalization
-            >>> np.all(vv.correlation(continuous=False) == corr/corr[0])
+            >>> bool(np.all(vv.correlation(continuous=False) == corr/corr[0]))
             True
             >>> # not normalizd, continuous
             >>> corr = vv.correlation(normalized=False,continuous=True)
             >>> c0 = (1+1+1+0.25+1+1+0.25)/7
             >>> c1 = (1+1+0.5+1)/5 ; c2 = (1+0.5)/4 ; c3 = (0.5+0.)/2
-            >>> print (np.allclose(corr, [ c0, c1, c2, c3]))
+            >>> bool(np.allclose(corr, [ c0, c1, c2, c3]))
             True
             >>> # check normalization
-            >>> np.all(vv.correlation(continuous=True) == corr/corr[0])
+            >>> bool(np.all(vv.correlation(continuous=True) == corr/corr[0]))
             True
 
         """
